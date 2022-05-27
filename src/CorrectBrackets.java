@@ -1,9 +1,9 @@
-import java.util.Scanner;
+
 
 
 public class CorrectBrackets {
     public static void main (String args[]) {
-        String var = "[)(]";
+        String var = "[]";
         System.out.println(checker(var));
     }
 
@@ -19,23 +19,16 @@ public class CorrectBrackets {
                 return false;
             }
             // going by the string's elements and counting brackets of different type
-            String one_symbol = s.substring(i, i + 1);
-            if (one_symbol.equals("(")) {
-                check_bracket_type1++;
-            } else if (one_symbol.equals("[")){
-                check_bracket_type2++;
-            } else if (one_symbol.equals(")")){
-                check_bracket_type1--;
-            } else if (one_symbol.equals("]")){
-                check_bracket_type2--;
+            String one_symbol = s.substring(i, i+1);
+            switch (one_symbol) {
+                case "(" -> check_bracket_type1++;
+                case "[" -> check_bracket_type2++;
+                case ")" -> check_bracket_type1--;
+                case "]" -> check_bracket_type2--;
             }
         }
         //after counted all the brackets making conclusion
-        if (check_bracket_type1 == 0 && check_bracket_type2 == 0){
-            return true;
-        } else {
-            return false;
-        }
+        return check_bracket_type1 == 0 && check_bracket_type2 == 0;
     }
 
 }
